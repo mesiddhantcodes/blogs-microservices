@@ -1,10 +1,10 @@
 const express=require('express');
 const bodyParser=require('body-parser');
 const {randomBytes}=require('crypto');
-
+const cors=require('cors');
 const app=express();
 app.use(bodyParser.json());
-
+app.use(cors());
 
 const posts={};
 app.get('/posts',(req,res)=>{
@@ -16,8 +16,9 @@ app.post('/posts',(req,res)=>{
     posts[id]={
         id,title
     };
+    console.log(posts);
     res.status(201).send(posts[id]);    
 });
-app.listen(3000,()=>{
-    console.log('Server started on port 3000');
+app.listen(4000,()=>{
+    console.log('Server started on port 4000');
 });
